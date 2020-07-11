@@ -6,11 +6,11 @@ A zsh plugin for timing, working with, and displaying the time an interactive sh
 
 ### Manual installation
 
-Clone this repo, and then `source` the `command_execution_timer.zsh` file in your `.zshrc`.
+Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
 
 ### Installation with a plugin manager
 
-Follow the standard installation procedure for your plugin manager. If you run into trouble open an issues. For Oh My Zsh use the `command_execution_timer.plugin.zsh` file, otherwise use the `command_execution_time.zsh` file. With Zplugin/Zinit, do not use `wait`.
+Follow the standard installation procedure for your plugin manager. If you run into trouble open an issues. For Oh My Zsh use the `command-execution-timer.plugin.zsh` file, otherwise use the `command-execution-timer.zsh` file. With Zplugin/Zinit, do not use `wait`.
 
 ## Usage
 
