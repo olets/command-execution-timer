@@ -71,7 +71,12 @@ _command_execution_timer__precmd() {
   _command_execution_timer__start=0
 }
 
+append_command_execution_duration() {
+  [[ -n $COMMAND_EXECUTION_DURATION ]] && 'print' $COMMAND_EXECUTION_DURATION
+}
+
 typeset -gF _command_execution_timer__start
 'builtin' 'autoload' -Uz add-zsh-hook
 add-zsh-hook preexec _command_execution_timer__preexec
 add-zsh-hook precmd _command_execution_timer__precmd
+
