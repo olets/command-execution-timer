@@ -3,7 +3,7 @@
 #
 # Forked from https://github.com/romkatv/powerlevel10k
 
-# Show duration of the last command if takes longer than this many seconds.
+# Show duration of the last command if takes at least this many seconds.
 typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
 # Show this many fractional digits. Zero means round to seconds.
 typeset -g COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
