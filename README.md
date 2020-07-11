@@ -92,7 +92,7 @@ Forked from [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
 
 ## Contributing
 
-Thanks for your interest. Contributions are welcome!
+Thanks for your interest. With the caveat that the intention is to keep the core work in line with Powerlevel10k, contributions are welcome!
 
 > Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
