@@ -8,9 +8,11 @@ typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=3
 # Show this many fractional digits. Zero means round to seconds.
 typeset -g COMMAND_EXECUTION_TIMER_PRECISION=0
 # Execution time color.
-typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=120
+typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=0
 # Duration format: 1d 2h 3m 4s.
 typeset -g COMMAND_EXECUTION_TIMER_FORMAT='d h m s'
+# Prefix
+typeset -g COMMAND_EXECUTION_TIMER_PREFIX='Took '
 
 command_execution_timer__format() {
   (( $+COMMAND_EXECUTION_TIMER_DURATION_SECONDS )) || return
@@ -49,7 +51,9 @@ command_execution_timer__format() {
     fi
   fi
 
-  'echo' -n $text
+  text="$COMMAND_EXECUTION_TIMER_PREFIX$text"
+  [[ -n $COMMAND_EXECUTION_TIMER_FOREGROUND ]] && text="%F{$COMMAND_EXECUTION_TIMER_FOREGROUND}$text%f"
+  'print' -P $text
 }
 
 _command_execution_timer__preexec() {
