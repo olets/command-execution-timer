@@ -4,15 +4,15 @@
 # Forked from https://github.com/romkatv/powerlevel10k
 
 # Show duration of the last command if takes longer than this many seconds.
-typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=3
+typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
 # Show this many fractional digits. Zero means round to seconds.
-typeset -g COMMAND_EXECUTION_TIMER_PRECISION=0
-# Execution time color.
-typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=0
-# Duration format: 1d 2h 3m 4s.
-typeset -g COMMAND_EXECUTION_TIMER_FORMAT='d h m s'
+typeset -g COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
+# Execution time color. Default: do not colorize.
+typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=${COMMAND_EXECUTION_TIMER_FOREGROUND-}
+# Duration format. Default <days>d <hours>h <minutes>m <seconds>s.
+typeset -g COMMAND_EXECUTION_TIMER_FORMAT=${COMMAND_EXECUTION_TIMER_FORMAT:-'d h m s'}
 # Prefix
-typeset -g COMMAND_EXECUTION_TIMER_PREFIX='Took '
+typeset -g COMMAND_EXECUTION_TIMER_PREFIX=${COMMAND_EXECUTION_TIMER_PREFIX-'Took '}
 
 command_execution_timer__format() {
   (( $+COMMAND_EXECUTION_TIMER_DURATION_SECONDS )) || return
