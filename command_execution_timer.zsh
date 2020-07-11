@@ -3,30 +3,29 @@
 #
 # Forked from https://github.com/romkatv/powerlevel10k
 
-###################[ command_execution_time: duration of the last command ]###################
 # Show duration of the last command if takes longer than this many seconds.
-typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=3
 # Show this many fractional digits. Zero means round to seconds.
-typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+typeset -g COMMAND_EXECUTION_TIMER_PRECISION=0
 # Execution time color.
-typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=120
+typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=120
 # Duration format: 1d 2h 3m 4s.
-typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
+typeset -g COMMAND_EXECUTION_TIMER_FORMAT='d h m s'
 
-prompt_command_execution_time() {
-  (( $+P9K_COMMAND_DURATION_SECONDS )) || return
-  (( P9K_COMMAND_DURATION_SECONDS >= POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD )) || return
+command_execution_time() {
+  (( $+COMMAND_EXECUTION_TIMER_DURATION_SECONDS )) || return
+  (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS >= COMMAND_EXECUTION_TIMER_THRESHOLD )) || return
 
-  if (( P9K_COMMAND_DURATION_SECONDS < 60 )); then
-    if (( !POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION )); then
-      local -i sec=$((P9K_COMMAND_DURATION_SECONDS + 0.5))
+  if (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS < 60 )); then
+    if (( !COMMAND_EXECUTION_TIMER_PRECISION )); then
+      local -i sec=$((COMMAND_EXECUTION_TIMER_DURATION_SECONDS + 0.5))
     else
-      local -F $POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION sec=P9K_COMMAND_DURATION_SECONDS
+      local -F $COMMAND_EXECUTION_TIMER_PRECISION sec=COMMAND_EXECUTION_TIMER_DURATION_SECONDS
     fi
     local text=${sec}s
   else
-    local -i d=$((P9K_COMMAND_DURATION_SECONDS + 0.5))
-    if [[ $POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT == "H:M:S" ]]; then
+    local -i d=$((COMMAND_EXECUTION_TIMER_DURATION_SECONDS + 0.5))
+    if [[ $COMMAND_EXECUTION_TIMER_FORMAT == "H:M:S" ]]; then
       local text=${(l.2..0.)$((d % 60))}
       if (( d >= 60 )); then
         text=${(l.2..0.)$((d / 60 % 60))}:$text
@@ -53,21 +52,21 @@ prompt_command_execution_time() {
   # echo $text
 }
 
-_command_execution_timer_preexec() {
-  _p9k__timer_start=EPOCHREALTIME
+_command_execution_timer__preexec() {
+  _command_execution_timer__start=EPOCHREALTIME
 }
 
-_command_execution_timer_precmd() {
-	if (( _p9k__timer_start )); then
-    typeset -gF P9K_COMMAND_DURATION_SECONDS=$((EPOCHREALTIME - _p9k__timer_start))
+_command_execution_timer__precmd() {
+	if (( _command_execution_timer__start )); then
+    typeset -gF COMMAND_EXECUTION_TIMER_DURATION_SECONDS=$((EPOCHREALTIME - _command_execution_timer__start))
   else
-    unset P9K_COMMAND_DURATION_SECONDS
+    unset COMMAND_EXECUTION_TIMER_DURATION_SECONDS
   fi
-  _p9k__timer_start=0
-  prompt_command_execution_time
+  _command_execution_timer__start=0
+  command_execution_time
 }
 
-typeset -gF _p9k__timer_start
+typeset -gF _command_execution_timer__start
 'builtin' 'autoload' -Uz add-zsh-hook
-add-zsh-hook preexec _command_execution_timer_preexec
-add-zsh-hook precmd _command_execution_timer_precmd
+add-zsh-hook preexec _command_execution_timer__preexec
+add-zsh-hook precmd _command_execution_timer__precmd
