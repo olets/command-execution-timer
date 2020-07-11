@@ -1,4 +1,4 @@
-# Command Execution Timer
+# Command Execution Timer ![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/command-execution-timer)
 
 A zsh plugin for timing, working with, and displaying the time an interactive shell command takes to execute.
 
