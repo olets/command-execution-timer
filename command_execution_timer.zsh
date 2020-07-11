@@ -12,7 +12,7 @@ typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=120
 # Duration format: 1d 2h 3m 4s.
 typeset -g COMMAND_EXECUTION_TIMER_FORMAT='d h m s'
 
-command_execution_time() {
+command_execution_timer__format() {
   (( $+COMMAND_EXECUTION_TIMER_DURATION_SECONDS )) || return
   (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS >= COMMAND_EXECUTION_TIMER_THRESHOLD )) || return
 
@@ -49,7 +49,7 @@ command_execution_time() {
     fi
   fi
 
-  # echo $text
+  'echo' -n $text
 }
 
 _command_execution_timer__preexec() {
@@ -59,11 +59,12 @@ _command_execution_timer__preexec() {
 _command_execution_timer__precmd() {
 	if (( _command_execution_timer__start )); then
     typeset -gF COMMAND_EXECUTION_TIMER_DURATION_SECONDS=$((EPOCHREALTIME - _command_execution_timer__start))
+    typeset -g COMMAND_EXECUTION_TIME=$(command_execution_timer__format)
   else
     unset COMMAND_EXECUTION_TIMER_DURATION_SECONDS
+    unset COMMAND_EXECUTION_TIME
   fi
   _command_execution_timer__start=0
-  command_execution_time
 }
 
 typeset -gF _command_execution_timer__start
