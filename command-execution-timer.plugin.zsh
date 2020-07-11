@@ -1,1 +1,1 @@
-source ${0:A:h}/command_execution_timer.zsh
+source ${0:A:h}/command-execution-timer.zsh
