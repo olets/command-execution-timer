@@ -4,13 +4,21 @@ A zsh plugin for timing, working with, and displaying the time an interactive sh
 
 ## Installation
 
-### Manual installation
-
-Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
-
 ### Installation with a plugin manager
 
 Follow the standard installation procedure for your plugin manager. If you run into trouble open an issues. For Oh My Zsh use the `command-execution-timer.plugin.zsh` file, otherwise use the `command-execution-timer.zsh` file. With Zplugin/Zinit, do not use `wait`.
+
+### Installation with a package manager
+
+You can install Command Execution Timer with Homebrew. Run
+
+```shell
+brew install olets/tap/command-execution-timer
+```
+
+### Manual installation
+
+Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
 
 ## Usage
 
