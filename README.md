@@ -71,9 +71,9 @@ Name | Type | Description | Default
 ---|---|---|---
 `COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `append_command_execution_duration` is silent if the duration is less than this. | `3`
 `COMMAND_EXECUTION_TIMER_PRECISION` | Integer | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | Formatted duration text color | none, will use your terminal's foreground color
+`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | `append_command_execution_duration` text color | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** | Prepended to the formatted duration | none
+`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** | Prepended to `append_command_execution_duration` output | none
 
 \* Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
 
