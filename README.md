@@ -1,12 +1,23 @@
 # Command Execution Timer ![GitHub release (latest by date)](https://img.shields.io/github/v/release/olets/command-execution-timer)
 
-A zsh plugin for timing, working with, and displaying the time an interactive shell command takes to execute.
+A zsh and Bash plugin for timing, working with, and displaying the time an interactive shell command takes to execute.
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Hook](#hook)
+  - [Formatter](#formatter)
+- [Options](#options)
+- [Acknowledgments](#acknowledgments)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
+> Bash users: add Command Execution Timer to the end of your profile so as not to interfere with anything else that's using PROMPT_COMMAND.
+
 ### Installation with a plugin manager
 
-Follow the standard installation procedure for your plugin manager. If you run into trouble open an issues. For Oh My Zsh use the `command-execution-timer.plugin.zsh` file, otherwise use the `command-execution-timer.zsh` file. With Zplugin/Zinit, do not use `wait`.
+Follow the standard installation procedure for your plugin manager. If you run into trouble open an issue. For Oh My Zsh use the `command-execution-timer.plugin.zsh` file, otherwise use the `command-execution-timer.zsh` file. With Zplugin/Zinit, do not use `wait`. Bash package managers have not been tested; feedback is welcome.
 
 ### Installation with a package manager
 
@@ -16,9 +27,16 @@ You can install Command Execution Timer with Homebrew. Run
 brew install olets/tap/command-execution-timer
 ```
 
+and follow the installation instructions.
+
 ### Manual installation
 
-Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
+Clone or download this repo, and then source the relevant file in your shell profile:
+
+- zsh: add `source <path/to/>command-execution-timer.zsh` file in your `.zshrc`
+- Bash: add `source <path/to/>command-execution-timer.sh` file in your `.profile` / `.bash_profile` / `.bashrc`
+
+where `<path/to/>` is the path to the Command Execution Timer directory.
 
 ## Usage
 
@@ -34,22 +52,27 @@ After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to t
 %
 ```
 
-Use the function `command_execution_timer__format` to format an arbitrary number of seconds
+`$COMMAND_EXECUTION_DURATION_SECONDS` precision varies by shell. In zsh it is precise to the tenth of a nanosecond, as in the above example; in Bash 5 it is precise to the microsecond; in Bash < 5 it is precise to the second.
 
-```shell
-# with the default
+### Hook
 
-% command_execution_timer__format 10.5
-11s
-```
+Command Execution Timer ships with a hook for automatically appending the command duration.
 
-Command Execution Timer ships with a hook for automatically appending the command duration. To enable it, add the following to your `.zshrc`:
+To enable it in **zsh**, add the following to your `.zshrc`:
 
 ```shell
 # .zshrc
 # ---snip---
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd append_command_execution_duration
+```
+
+To enable it in **Bash**, add the following to your Bash profile:
+
+```shell
+# .bash_profile / .profile / .bashrc
+# ---snip---
+precmd_functions+=(append_command_execution_duration)
 ```
 
 ```shell
@@ -65,6 +88,17 @@ done
 
 The hook's duration message is independent of and will not conflict with a customized prompt.
 
+### Formatter
+
+Use the function `command_execution_timer__format` to format an arbitrary number of seconds.
+
+```shell
+# with the default
+
+% command_execution_timer__format 10.5
+11s
+```
+
 ## Options
 
 Name | Type | Description | Default
@@ -73,34 +107,47 @@ Name | Type | Description | Default
 `COMMAND_EXECUTION_TIMER_PRECISION` | Integer | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
 `COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | `append_command_execution_duration` text color | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** | Prepended to `append_command_execution_duration` output | none
+`COMMAND_EXECUTION_TIMER_PREFIX` | String** | Prepended to `append_command_execution_duration` output | none
 
-\* Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
+\* In **Bash** colors are an ANSI escape sequence. In **zsh** colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
 
-\** Will be evaluted as in `print -P $COMMAND_EXECUTION_TIMER_PREFIX`.
+\** In **zsh**, `COMMAND_EXECUTION_TIMER_PREFIX` is printed with [prompt expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Test with `print -P $COMMAND_EXECUTION_TIMER_PREFIX`.
 
-For example,
+For example, to print the duration of at-least-`COMMAND_EXECUTION_TIMER_THRESHOLD`-second commands in yellow with a blank line separating the command output and the duration,
+
+With **zsh**:
 
 ```shell
 # .zshrc
 # ---snip---
-COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
 COMMAND_EXECUTION_TIMER_FOREGROUND=yellow
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd append_command_execution_duration
+COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
 ```
+
+With **Bash**:
+
+```shell
+# Bash profile
+# ---snip---
+COMMAND_EXECUTION_TIMER_FOREGROUND="1;33"
+COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
+```
+
+Result
 
 ```shell
 % sleep 3 && echo done
 done
 
-Took 3s
-% # the "Took 3s" would be yellow
+Took 3s # (this line would be yellow)
+%
 ```
 
 ## Acknowledgments
 
-Forked from [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+Command Execution Timer began as a fork of [Powerlevel10k](https://github.com/romkatv/powerlevel10k)'s command duration segment.
+
+Bash support relies on [Bash-Preexec](https://github.com/rcaloras/bash-preexec).
 
 ## Contributing
 
