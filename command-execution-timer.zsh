@@ -1,5 +1,7 @@
 # command-execution-timer
-# https://github.com/olets/git-prompt-kit
+# https://github.com/olets/command-execution-timer
+# Henry Bley-Vroman
+# MIT License - 2020
 #
 # Forked from https://github.com/romkatv/powerlevel10k
 
