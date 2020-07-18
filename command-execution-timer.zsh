@@ -51,9 +51,7 @@ command_execution_timer__format() {
     fi
   fi
 
-  text="$COMMAND_EXECUTION_TIMER_PREFIX$text"
-  [[ -n $COMMAND_EXECUTION_TIMER_FOREGROUND ]] && text="%F{$COMMAND_EXECUTION_TIMER_FOREGROUND}$text%f"
-  'print' -P $text
+  'echo' $text
 }
 
 _command_execution_timer__preexec() {
@@ -73,7 +71,11 @@ _command_execution_timer__precmd() {
 
 append_command_execution_duration() {
   (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS >= COMMAND_EXECUTION_TIMER_THRESHOLD )) || return
-  [[ -n $COMMAND_EXECUTION_DURATION ]] && 'print' $COMMAND_EXECUTION_DURATION
+  [[ -n $COMMAND_EXECUTION_DURATION ]] || return
+
+  local text=$COMMAND_EXECUTION_TIMER_PREFIX$COMMAND_EXECUTION_DURATION
+  [[ -n $COMMAND_EXECUTION_TIMER_FOREGROUND ]] && text="%F{$COMMAND_EXECUTION_TIMER_FOREGROUND}$text%f"
+  'print' -P $text
 }
 
 typeset -gF _command_execution_timer__start
