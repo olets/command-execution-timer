@@ -15,17 +15,18 @@ typeset -g COMMAND_EXECUTION_TIMER_FORMAT=${COMMAND_EXECUTION_TIMER_FORMAT:-'d h
 typeset -g COMMAND_EXECUTION_TIMER_PREFIX=${COMMAND_EXECUTION_TIMER_PREFIX-}
 
 command_execution_timer__format() {
-  (( $+COMMAND_EXECUTION_TIMER_DURATION_SECONDS )) || return
+  local -F raw=${1:-$COMMAND_EXECUTION_TIMER_DURATION_SECONDS}
+  (( raw )) || return
 
-  if (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS < 60 )); then
+  if (( raw < 60 )); then
     if (( !COMMAND_EXECUTION_TIMER_PRECISION )); then
-      local -i sec=$((COMMAND_EXECUTION_TIMER_DURATION_SECONDS + 0.5))
+      local -i sec=$((raw + 0.5))
     else
-      local -F $COMMAND_EXECUTION_TIMER_PRECISION sec=COMMAND_EXECUTION_TIMER_DURATION_SECONDS
+      local -F $COMMAND_EXECUTION_TIMER_PRECISION sec=raw
     fi
     local text=${sec}s
   else
-    local -i d=$((COMMAND_EXECUTION_TIMER_DURATION_SECONDS + 0.5))
+    local -i d=$((raw + 0.5))
     if [[ $COMMAND_EXECUTION_TIMER_FORMAT == "H:M:S" ]]; then
       local text=${(l.2..0.)$((d % 60))}
       if (( d >= 60 )); then
