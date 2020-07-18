@@ -67,13 +67,13 @@ The hook's duration message is independent of and will not conflict with a custo
 
 ## Options
 
-Name | Description | Default
----|---|---
-`COMMAND_EXECUTION_TIMER_THRESHOLD` | When using `append_command_execution_duration`, append the duration if it is at least this many seconds. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | When the duration is under a minute, show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION`. Zero means round to seconds. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | none, will use your terminal's foreground color
-`COMMAND_EXECUTION_TIMER_FORMAT` | Supported values: `"d h m s"`, `"H:M:S"` | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** prepended to the formatted duration | none
+Name | Type | Description | Default
+---|---|---|---
+`COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `append_command_execution_duration` is silent if the duration is less than this. | `3`
+`COMMAND_EXECUTION_TIMER_PRECISION` | Float | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
+`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | Formatted duration text color | none, will use your terminal's foreground color
+`COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
+`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** | Prepended to the formatted duration | none
 
 \* Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
 
