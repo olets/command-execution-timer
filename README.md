@@ -22,20 +22,15 @@ Clone this repo, and then `source` the `command-execution-timer.zsh` file in you
 
 ## Usage
 
-After executing a command, `COMMAND_EXECUTION_DURATION` will be set to the formatted duration. If the command executed in less time than the configured threshold, `COMMAND_EXECUTION_DURATION` is not set.
+After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to the command duration in seconds and  `COMMAND_EXECUTION_DURATION` will be set to the formatted duration.
 
 ```shell
 # with the default configuration
 
 % sleep 2
-% echo $COMMAND_EXECUTION_DURATION
-
-% sleep 3
-% echo $COMMAND_EXECUTION_DURATION
-3s
-% echo $COMMAND_EXECUTION_DURATION
-
-% [[ -n $COMMAND_EXECUTION_DURATION ]] && echo true
+% echo $COMMAND_EXECUTION_TIMER_DURATION_SECONDS && echo $COMMAND_EXECUTION_DURATION
+2.0377490520
+2s
 %
 ```
 
@@ -65,11 +60,11 @@ The hook's duration message is independent of and will not conflict with a custo
 
 Name | Description | Default
 ---|---|---
-`COMMAND_EXECUTION_TIMER_THRESHOLD` | Show duration of the last command if takes at least this many seconds. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | Show this many fractional digits. Zero means round to seconds. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* |
+`COMMAND_EXECUTION_TIMER_THRESHOLD` | When using `append_command_execution_duration`, append the duration if it is at least this many seconds. | `3`
+`COMMAND_EXECUTION_TIMER_PRECISION` | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION`. Zero means round to seconds. | `0`
+`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | Supported values: `"d h m s"`, `"H:M:S"` | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** prepended to the formatted duration |
+`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** prepended to the formatted duration | none
 
 \* Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
 
