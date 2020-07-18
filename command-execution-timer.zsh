@@ -6,7 +6,7 @@
 # Show duration of the last command if takes at least this many seconds.
 typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
 # Show this many fractional digits. Zero means round to seconds.
-typeset -g COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
+typeset -gi COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
 # Execution time color. Default: do not colorize.
 typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=${COMMAND_EXECUTION_TIMER_FOREGROUND-}
 # Duration format. Default <days>d <hours>h <minutes>m <seconds>s.
