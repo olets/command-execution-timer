@@ -70,7 +70,7 @@ The hook's duration message is independent of and will not conflict with a custo
 Name | Description | Default
 ---|---|---
 `COMMAND_EXECUTION_TIMER_THRESHOLD` | When using `append_command_execution_duration`, append the duration if it is at least this many seconds. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION`. Zero means round to seconds. | `0`
+`COMMAND_EXECUTION_TIMER_PRECISION` | When the duration is under a minute, show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION`. Zero means round to seconds. | `0`
 `COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | Supported values: `"d h m s"`, `"H:M:S"` | `"d h m s"`
 `COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** prepended to the formatted duration | none
