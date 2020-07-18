@@ -34,6 +34,15 @@ After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to t
 %
 ```
 
+Use the function `command_execution_timer__format` to format an arbitrary number of seconds
+
+```shell
+# with the default
+
+% command_execution_timer__format 10.5
+11s
+```
+
 Command Execution Timer ships with a hook for automatically appending the command duration. To enable it, add the following to your `.zshrc`:
 
 ```shell
