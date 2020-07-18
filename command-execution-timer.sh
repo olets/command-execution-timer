@@ -31,15 +31,21 @@ command_execution_timer__format() {
   # Need support float
   if [[ $raw < 60 ]]; then
     if ! (( COMMAND_EXECUTION_TIMER_PRECISION )); then
-      local rounded=$(echo "$raw + 0.5" | bc)
-      local -i sec=$('printf' "%.f" "$rounded")
+      # printf rounds 0.5 down!
+      local raw_adjusted=$raw
+      [[ $raw_adjusted < 1 ]] && raw_adjusted=$(echo "$raw + 0.01" | bc)
+
+      local -i sec=$('printf' "%.f" "$raw_adjusted")
     else
       local sec=$('printf' "%.${COMMAND_EXECUTION_TIMER_PRECISION}f" "$raw")
     fi
     local text=${sec}s
   else
-    local rounded=$(echo "$raw + 0.5" | bc)
-    local -i d=$('printf' "%.f" "$rounded")
+    # printf rounds 0.5 down!
+    local raw_adjusted=$raw
+    [[ $raw_adjusted < 1 ]] && raw_adjusted=$(echo "$raw + 0.01" | bc)
+
+    local -i d=$('printf' "%.f" "$raw_adjusted")
 
     if [[ $COMMAND_EXECUTION_TIMER_FORMAT == "H:M:S" ]]; then
       local text=$('printf' "%02.f" $((d % 60)))
