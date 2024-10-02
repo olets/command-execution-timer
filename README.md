@@ -86,7 +86,7 @@ Use the function `command_execution_timer__format` to format an arbitrary number
 Name | Type | Description | Default
 ---|---|---|---
 `COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `command_execution_timer__print_duration_after_command_output` is silent if the duration is less than this. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | Integer* | Show this many decimal places in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
+`COMMAND_EXECUTION_TIMER_PRECISION` | Integer* | Round durations under 1 second to this many decimal places in the formatted `$COMMAND_EXECUTION_DURATION`. | `0`
 `COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value** | `command_execution_timer__print_duration_after_command_output` text color | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
 `COMMAND_EXECUTION_TIMER_PREFIX` | String*** | Prepended to `command_execution_timer__print_duration_after_command_output` output | none
