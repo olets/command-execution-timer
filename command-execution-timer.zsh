@@ -95,7 +95,7 @@ command_execution_timer__print_duration_after_command_output() {
 
   local text=$COMMAND_EXECUTION_TIMER_PREFIX$COMMAND_EXECUTION_DURATION
   [[ -n $COMMAND_EXECUTION_TIMER_FOREGROUND ]] && text="%F{$COMMAND_EXECUTION_TIMER_FOREGROUND}$text%f"
-  'print' -P $text
+  'builtin' 'print' -P $text
 }
 
 _command_execution_timer__init() {
