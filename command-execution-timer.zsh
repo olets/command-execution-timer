@@ -67,9 +67,9 @@ _command_execution_timer__preexec() {
 }
 
 _command_execution_timer__precmd() {
-	if (( _command_execution_timer__start )); then
   emulate -LR zsh
 
+  if (( _command_execution_timer__start )); then
     typeset -gF COMMAND_EXECUTION_TIMER_DURATION_SECONDS=$((EPOCHREALTIME - _command_execution_timer__start))
     typeset -g COMMAND_EXECUTION_DURATION=$(command_execution_timer__format)
   else
