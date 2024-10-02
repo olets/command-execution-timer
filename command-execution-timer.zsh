@@ -83,6 +83,13 @@ _command_execution_timer__precmd() {
 append_command_execution_duration() {
   emulate -LR zsh
 
+  command_execution_timer__print_duration_after_command_output
+  'builtin' 'print' "command-execution-timer: \`append_command_execution_duration\` is deprecated. Use the new name \`command_execution_timer__print_duration_after_command_output\` instead."
+}
+
+command_execution_timer__print_duration_after_command_output() {
+  emulate -LR zsh
+
   (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS >= COMMAND_EXECUTION_TIMER_THRESHOLD )) || return
   [[ -n $COMMAND_EXECUTION_DURATION ]] || return
 

@@ -54,7 +54,7 @@ Command Execution Timer ships with a hook for automatically appending the comman
 # .zshrc
 # ---snip---
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd append_command_execution_duration
+add-zsh-hook precmd command_execution_timer__print_duration_after_command_output
 ```
 
 ```shell
@@ -85,11 +85,11 @@ Use the function `command_execution_timer__format` to format an arbitrary number
 
 Name | Type | Description | Default
 ---|---|---|---
-`COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `append_command_execution_duration` is silent if the duration is less than this. | `3`
+`COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `command_execution_timer__print_duration_after_command_output` is silent if the duration is less than this. | `3`
 `COMMAND_EXECUTION_TIMER_PRECISION` | Integer* | Show this many decimal places in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value** | `append_command_execution_duration` text color | none, will use your terminal's foreground color
+`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value** | `command_execution_timer__print_duration_after_command_output` text color | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | String*** | Prepended to `append_command_execution_duration` output | none
+`COMMAND_EXECUTION_TIMER_PREFIX` | String*** | Prepended to `command_execution_timer__print_duration_after_command_output` output | none
 
 \* Maximum precision is limited by the shell. Zsh is precise to the tenth of a nanosecond, so the highest meaningful `COMMAND_EXECUTION_TIMER_PRECISION` value is 10.
 
