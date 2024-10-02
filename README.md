@@ -2,6 +2,15 @@
 
 A zsh plugin for timing, working with, and displaying the time an interactive shell command takes to execute.
 
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Hook](#hook)
+  - [Formatter](#formatter)
+- [Options](#options)
+- [Acknowledgments](#acknowledgments)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 ### Installation with a plugin manager
@@ -16,13 +25,15 @@ You can install Command Execution Timer with Homebrew. Run
 brew install olets/tap/command-execution-timer
 ```
 
+and follow the installation instructions.
+
 ### Manual installation
 
 Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
 
 ## Usage
 
-After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to the command duration in seconds and  `COMMAND_EXECUTION_DURATION` will be set to the formatted duration.
+After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to the command duration in seconds and `COMMAND_EXECUTION_DURATION` will be set to the formatted duration.
 
 ```shell
 # with the default configuration
@@ -34,14 +45,8 @@ After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to t
 %
 ```
 
-Use the function `command_execution_timer__format` to format an arbitrary number of seconds
+### Hook
 
-```shell
-# with the default
-
-% command_execution_timer__format 10.5
-11s
-```
 
 Command Execution Timer ships with a hook for automatically appending the command duration. To enable it, add the following to your `.zshrc`:
 
@@ -65,42 +70,55 @@ done
 
 The hook's duration message is independent of and will not conflict with a customized prompt.
 
+### Formatter
+
+Use the function `command_execution_timer__format` to format an arbitrary number of seconds.
+
+```shell
+# with the default
+
+% command_execution_timer__format 10.5
+11s
+```
+
 ## Options
 
 Name | Type | Description | Default
 ---|---|---|---
 `COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `append_command_execution_duration` is silent if the duration is less than this. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | Integer | Show this many fractional digits in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value* | `append_command_execution_duration` text color | none, will use your terminal's foreground color
+`COMMAND_EXECUTION_TIMER_PRECISION` | Integer* | Show this many decimal places in the formatted `$COMMAND_EXECUTION_DURATION` if the duration is under a minute. Zero means round to seconds. | `0`
+`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value** | `append_command_execution_duration` text color | none, will use your terminal's foreground color
 `COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | Prompt string** | Prepended to `append_command_execution_duration` output | none
+`COMMAND_EXECUTION_TIMER_PREFIX` | String*** | Prepended to `append_command_execution_duration` output | none
 
-\* Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
+\* Maximum precision is limited by the shell. Zsh is precise to the tenth of a nanosecond, so the highest meaningful `COMMAND_EXECUTION_TIMER_PRECISION` value is 10.
 
-\** Will be evaluted as in `print -P $COMMAND_EXECUTION_TIMER_PREFIX`.
+\** Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
 
-For example,
+\*** `COMMAND_EXECUTION_TIMER_PREFIX` is printed with [prompt expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Test with `print -P $COMMAND_EXECUTION_TIMER_PREFIX`.
+
+For example, to print the duration of at-least-`COMMAND_EXECUTION_TIMER_THRESHOLD`-second commands in yellow with a blank line separating the command output and the duration,
 
 ```shell
 # .zshrc
 # ---snip---
-COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
 COMMAND_EXECUTION_TIMER_FOREGROUND=yellow
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd append_command_execution_duration
+COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
 ```
+
+Result
 
 ```shell
 % sleep 3 && echo done
 done
 
-Took 3s
-% # the "Took 3s" would be yellow
+Took 3s # (this line would be yellow)
+%
 ```
 
 ## Acknowledgments
 
-Forked from [Powerlevel10k](https://github.com/romkatv/powerlevel10k).
+Command Execution Timer began as a fork of [Powerlevel10k](https://github.com/romkatv/powerlevel10k)'s command duration segment.
 
 ## Contributing
 
