@@ -6,7 +6,7 @@
 # Copyright (c) 2009-2014 Robby Russell and contributors (see https://github.com/robbyrussell/oh-my-zsh/contributors)
 # Copyright (c) 2014-2017 Ben Hilburn <bhilburn@gmail.com>
 # Copyright (c) 2019 Roman Perepelitsa <roman.perepelitsa@gmail.com> and contributors (see https://github.com/romkatv/powerlevel10k/contributors)
-# Copyright (c) 2020 Henry Bley-Vroman <olets@olets.dev>
+# Copyright (c) 2020-present Henry Bley-Vroman <olets@olets.dev>
 
 # Show duration of the last command if takes at least this many seconds.
 typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
