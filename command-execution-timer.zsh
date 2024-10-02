@@ -17,6 +17,8 @@ typeset -g COMMAND_EXECUTION_TIMER_FORMAT=${COMMAND_EXECUTION_TIMER_FORMAT:-'d h
 typeset -g COMMAND_EXECUTION_TIMER_PREFIX=${COMMAND_EXECUTION_TIMER_PREFIX-}
 
 command_execution_timer__format() {
+  emulate -LR zsh
+
   local -F raw=${1:-$COMMAND_EXECUTION_TIMER_DURATION_SECONDS}
   (( raw )) || return
 
@@ -57,11 +59,15 @@ command_execution_timer__format() {
 }
 
 _command_execution_timer__preexec() {
+  emulate -LR zsh
+
   _command_execution_timer__start=EPOCHREALTIME
 }
 
 _command_execution_timer__precmd() {
 	if (( _command_execution_timer__start )); then
+  emulate -LR zsh
+
     typeset -gF COMMAND_EXECUTION_TIMER_DURATION_SECONDS=$((EPOCHREALTIME - _command_execution_timer__start))
     typeset -g COMMAND_EXECUTION_DURATION=$(command_execution_timer__format)
   else
@@ -72,6 +78,8 @@ _command_execution_timer__precmd() {
 }
 
 append_command_execution_duration() {
+  emulate -LR zsh
+
   (( COMMAND_EXECUTION_TIMER_DURATION_SECONDS >= COMMAND_EXECUTION_TIMER_THRESHOLD )) || return
   [[ -n $COMMAND_EXECUTION_DURATION ]] || return
 
@@ -81,6 +89,8 @@ append_command_execution_duration() {
 }
 
 _command_execution_timer__init() {
+  emulate -LR zsh
+  
   typeset -gF _command_execution_timer__start
   'builtin' 'autoload' -Uz add-zsh-hook
   add-zsh-hook preexec _command_execution_timer__preexec
