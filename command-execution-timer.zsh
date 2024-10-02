@@ -80,8 +80,13 @@ append_command_execution_duration() {
   'print' -P $text
 }
 
-typeset -gF _command_execution_timer__start
-'builtin' 'autoload' -Uz add-zsh-hook
-add-zsh-hook preexec _command_execution_timer__preexec
-add-zsh-hook precmd _command_execution_timer__precmd
+_command_execution_timer__init() {
+  typeset -gF _command_execution_timer__start
+  'builtin' 'autoload' -Uz add-zsh-hook
+  add-zsh-hook preexec _command_execution_timer__preexec
+  add-zsh-hook precmd _command_execution_timer__precmd
+}
 
+_command_execution_timer__init
+
+unfunction -m _command_execution_timer__init
