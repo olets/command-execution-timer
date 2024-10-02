@@ -92,7 +92,8 @@ append_command_execution_duration() {
 
 _command_execution_timer__init() {
   emulate -LR zsh
-  
+
+  'builtin' 'setopt' prompt_subst
   typeset -gF _command_execution_timer__start
   'builtin' 'autoload' -Uz add-zsh-hook
   add-zsh-hook preexec _command_execution_timer__preexec
