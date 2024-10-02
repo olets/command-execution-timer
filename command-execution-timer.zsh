@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # command-execution-timer
 # https://github.com/olets/command-execution-timer
 # Henry Bley-Vroman
