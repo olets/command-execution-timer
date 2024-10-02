@@ -37,6 +37,22 @@ and follow the logged installation instructions.
 
 Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
 
+### Legacy versions
+
+- Plugin manager: use your manager to install Command Execution Time from branch `v1`.
+- Homebrew:
+    install v1
+    ```shell:no-line-numbers
+    brew uninstall --force zsh-abbr && brew install olets/tap/command-execution-time@1
+    ```
+    and follow the post-install instructions logged to the terminal.
+- Manual:
+  - either download the latest v1.x's archive from <https://github.com/olets/zsh-abbr/releases>
+  - or clone the `v1` branch:
+      ```shell:no-line-numbers
+      git clone https://github.com/olets/zsh-abbr --single-branch --branch v1 --depth 1
+      ```
+
 ## Usage
 
 After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to the command duration in seconds and `COMMAND_EXECUTION_DURATION` will be set to the formatted duration.
