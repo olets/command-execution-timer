@@ -15,7 +15,13 @@ A zsh plugin for timing, working with, and displaying the time an interactive sh
 
 ### Installation with a plugin manager
 
-Follow the standard installation procedure for your plugin manager. If you run into trouble open an issues. For Oh My Zsh use the `command-execution-timer.plugin.zsh` file, otherwise use the `command-execution-timer.zsh` file. With Zplugin/Zinit, do not use `wait`.
+You can install Command Execution Timer with a zsh plugin manager. Each has their own way of doing things. Read your package manager's documentation or the [zsh plugin manager plugin installation procedures gist](https://gist.github.com/olets/06009589d7887617e061481e22cf5a4a).
+
+After adding the plugin to the manager, it will be available in all new terminals. To use it in an already-open terminal, restart zsh in that terminal:
+
+```shell
+exec zsh
+```
 
 ### Installation with a package manager
 
