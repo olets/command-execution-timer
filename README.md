@@ -25,7 +25,7 @@ You can install Command Execution Timer with Homebrew. Run
 brew install olets/tap/command-execution-timer
 ```
 
-and follow the installation instructions.
+and follow the logged installation instructions.
 
 ### Manual installation
 
