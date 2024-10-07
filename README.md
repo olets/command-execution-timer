@@ -2,145 +2,18 @@
 
 A zsh plugin for timing, working with, and displaying the time an interactive shell command takes to execute.
 
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Hook](#hook)
-  - [Formatter](#formatter)
-- [Options](#options)
-- [Acknowledgments](#acknowledgments)
-- [Contributing](#contributing)
-- [License](#license)
+&nbsp;
 
-## Installation
+## Documentation
 
-### Installation with a plugin manager
+📖 See the guide at https://command-execution-timer.olets.dev/
 
-You can install Command Execution Timer with a zsh plugin manager. Each has their own way of doing things. Read your package manager's documentation or the [zsh plugin manager plugin installation procedures gist](https://gist.github.com/olets/06009589d7887617e061481e22cf5a4a).
-
-After adding the plugin to the manager, it will be available in all new terminals. To use it in an already-open terminal, restart zsh in that terminal:
-
-```shell
-exec zsh
-```
-
-### Installation with a package manager
-
-You can install Command Execution Timer with Homebrew. Run
-
-```shell
-brew install olets/tap/command-execution-timer
-```
-
-and follow the logged installation instructions.
-
-### Manual installation
-
-Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
-
-### Legacy versions
-
-- Plugin manager: use your manager to install Command Execution Time from branch `v1`.
-- Homebrew:
-    install v1
-    ```shell:no-line-numbers
-    brew uninstall --force zsh-abbr && brew install olets/tap/command-execution-time@1
-    ```
-    and follow the post-install instructions logged to the terminal.
-- Manual:
-  - either download the latest v1.x's archive from <https://github.com/olets/zsh-abbr/releases>
-  - or clone the `v1` branch:
-      ```shell:no-line-numbers
-      git clone https://github.com/olets/zsh-abbr --single-branch --branch v1 --depth 1
-      ```
-
-## Usage
-
-After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to the command duration in seconds and `COMMAND_EXECUTION_DURATION` will be set to the formatted duration.
-
-```shell
-# with the default configuration
-
-% sleep 2
-% echo $COMMAND_EXECUTION_TIMER_DURATION_SECONDS && echo $COMMAND_EXECUTION_DURATION
-2.0377490520
-2s
-%
-```
-
-### Hook
+&nbsp;
 
 
-Command Execution Timer ships with a hook for automatically appending the command duration. To enable it, add the following to your `.zshrc`:
+## Changelog
 
-```shell
-# .zshrc
-# ---snip---
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd command_execution_timer__print_duration_after_command_output
-```
-
-```shell
-# with the default configuration
-
-% sleep 2 && echo done
-done
-% sleep 3 && echo done
-done
-3s
-%
-```
-
-The hook's duration message is independent of and will not conflict with a customized prompt.
-
-### Formatter
-
-Use the function `command_execution_timer__format` to format an arbitrary number of seconds.
-
-```shell
-# with the default
-
-% command_execution_timer__format 10.5
-11s
-```
-
-## Options
-
-Name | Type | Description | Default
----|---|---|---
-`COMMAND_EXECUTION_TIMER_THRESHOLD` | Float | `command_execution_timer__print_duration_after_command_output` is silent if the duration is less than this. | `3`
-`COMMAND_EXECUTION_TIMER_PRECISION` | Integer* | Round durations under 1 second to this many decimal places in the formatted `$COMMAND_EXECUTION_DURATION`. | `0`
-`COMMAND_EXECUTION_TIMER_FOREGROUND` | Color value** | `command_execution_timer__print_duration_after_command_output` text color | none, will use your terminal's foreground color
-`COMMAND_EXECUTION_TIMER_FORMAT` | `"d h m s"` or `"H:M:S"` | Format. Ignored if `COMMAND_EXECUTION_TIMER_PRECISION` is non-zero. | `"d h m s"`
-`COMMAND_EXECUTION_TIMER_PREFIX` | String*** | Prepended to `command_execution_timer__print_duration_after_command_output` output | none
-
-\* Maximum precision is limited by the shell. Zsh is precise to the tenth of a nanosecond, so the highest meaningful `COMMAND_EXECUTION_TIMER_PRECISION` value is 10.
-
-\** Colors can be one of zsh's eight color names (`black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan` and `white`; see http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting), an integer 1-255 for an 8-bit color (see https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit), or a #-prefixed 3- or 6-character hexadecimal value for 24-bit color (e.g. `#fff`, `#34d5eb`). Support depends on your terminal emulator.
-
-\*** `COMMAND_EXECUTION_TIMER_PREFIX` is printed with [prompt expansion](http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html). Test with `print -P $COMMAND_EXECUTION_TIMER_PREFIX`.
-
-For example, to print the duration of at-least-`COMMAND_EXECUTION_TIMER_THRESHOLD`-second commands in yellow with a blank line separating the command output and the duration,
-
-```shell
-# .zshrc
-# ---snip---
-COMMAND_EXECUTION_TIMER_FOREGROUND=yellow
-COMMAND_EXECUTION_TIMER_PREFIX=$'\nTook '
-```
-
-Result
-
-```shell
-% sleep 3 && echo done
-done
-
-Took 3s # (this line would be yellow)
-%
-```
-
-## Acknowledgments
-
-Command Execution Timer began as a fork of [Powerlevel10k](https://github.com/romkatv/powerlevel10k)'s command duration segment.
+See the [CHANGELOG](CHANGELOG.md) file.
 
 ## Contributing
 
@@ -148,7 +21,9 @@ Thanks for your interest. With the caveat that the intention is to keep the core
 
 > Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-Check the [Issues](https://github.com/olets/git-prompt-kit/issues) to see if your topic has been discussed before or if it is being worked on. Discussing in an Issue before opening a Pull Request means future contributors only have to search in one place.
+Check the [Issues](https://github.com/olets/command-execution-timer/issues) to see if your topic has been discussed before or if it is being worked on. Discussing in an Issue before opening a Pull Request means future contributors only have to search in one place.
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
 ## License
 

@@ -1,0 +1,33 @@
+{
+  "author": "Henry Bley-Vroman <olets@olets.dev>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olets/command-execution-timer"
+  },
+  "bugs": {
+    "url": "https://github.com/olets/command-execution-timer/issues"
+  },
+  "homepage": "https://github.com/olets/command-execution-timer",
+  "keywords": [
+    "zsh",
+    "shell",
+    "timer"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "packageManager": "bun@1.1.25",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "markdown-it-footnote": "^4.0.0",
+    "vitepress": "^1.3.4"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "name": "command-execution-timer",
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
