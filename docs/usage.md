@@ -16,7 +16,7 @@ After executing a command, `COMMAND_EXECUTION_DURATION_SECONDS` will be set to t
 ## Hook
 
 
-Command Execution Timer ships with a hook for automatically appending the command duration. To enable it, add the following to your `.zshrc`:
+Command Execution Timer ships with a hook for automatically printing a command's duration after its output. To enable the hook, add the following to your `.zshrc`:
 
 ```shell
 # .zshrc
