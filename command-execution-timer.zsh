@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# command-execution-timer
+# Command Execution Timer
 # https://github.com/olets/command-execution-timer
 # MIT License
 # Copyright (c) 2009-2014 Robby Russell and contributors (see https://github.com/robbyrussell/oh-my-zsh/contributors)
@@ -62,7 +62,7 @@ command_execution_timer__format() {
         fi
         ;;
       *)
-        'builtin' 'print' "command-execution-timer: Invalid \`COMMAND_EXECUTION_TIMER_FORMAT\`: $COMMAND_EXECUTION_TIMER_FORMAT" >&2
+        'builtin' 'print' "Command Execution Timer: Invalid \`COMMAND_EXECUTION_TIMER_FORMAT\`: $COMMAND_EXECUTION_TIMER_FORMAT" >&2
         return 1
         ;;
     esac
@@ -94,7 +94,7 @@ append_command_execution_duration() {
   emulate -LR zsh
 
   command_execution_timer__print_duration_after_command_output
-  'builtin' 'print' "command-execution-timer: \`append_command_execution_duration\` is deprecated. Use the new name \`command_execution_timer__print_duration_after_command_output\` instead."
+  'builtin' 'print' "Command Execution Timer: \`append_command_execution_duration\` is deprecated. Use the new name \`command_execution_timer__print_duration_after_command_output\` instead."
 }
 
 command_execution_timer__print_duration_after_command_output() {

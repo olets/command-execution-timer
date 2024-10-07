@@ -1,6 +1,6 @@
 {
-  "name": "command-execution-timer",
-  "short_name": "command-execution-timer",
+  "name": "Command Execution Timer",
+  "short_name": "Command Execution Timer",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

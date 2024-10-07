@@ -3,7 +3,7 @@ import markdownItFootnote from "markdown-it-footnote";
 
 const description =
   "A zsh plugin for timing, working with, and displaying the time an interactive shell command takes to execute.";
-const title = "command-execution-timer";
+const title = "Command Execution Timer";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -50,7 +50,7 @@ export default defineConfig({
     ],
 
     // social metas
-    ["meta", { property: "og:title", content: "command-execution-timer" }],
+    ["meta", { property: "og:title", content: "Command Execution Timer" }],
     [
       "meta",
       {
@@ -65,7 +65,7 @@ export default defineConfig({
         content: "https://command-execution-timer.olets.dev/",
       },
     ],
-    ["meta", { property: "og:site_name", content: "command-execution-timer" }],
+    ["meta", { property: "og:site_name", content: "Command Execution Timer" }],
     ["meta", { property: "og:type", content: "website" }],
     [
       "meta",
@@ -77,7 +77,7 @@ export default defineConfig({
     ],
     ["meta", { property: "og:image:width", content: "1200" }],
     ["meta", { property: "og:image:height", content: "630" }],
-    ["meta", { name: "twitter:title", content: "command-execution-timer" }],
+    ["meta", { name: "twitter:title", content: "Command Execution Timer" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     [
       "meta",
