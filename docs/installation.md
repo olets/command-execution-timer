@@ -37,7 +37,7 @@ Clone this repo, and then `source` the `command-execution-timer.zsh` file in you
 
     Install v1
     ```shell:no-line-numbers
-    brew install olets/tap/command-execution-time@1
+    brew install olets/tap/command-execution-timer@1
     ```
 
     and follow the post-install instructions logged to the terminal.
