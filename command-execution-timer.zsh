@@ -25,37 +25,47 @@ command_execution_timer__format() {
   local -F raw=${1:-$COMMAND_EXECUTION_TIMER_DURATION_SECONDS}
   (( raw )) || return
 
+  local text
+
   if (( raw < 60 )); then
     if (( !COMMAND_EXECUTION_TIMER_PRECISION )); then
       local -i sec=$((raw + 0.5))
     else
       local -F $COMMAND_EXECUTION_TIMER_PRECISION sec=raw
     fi
-    local text=${sec}s
+    text=${sec}s
   else
     local -i d=$((raw + 0.5))
-    if [[ $COMMAND_EXECUTION_TIMER_FORMAT == "H:M:S" ]]; then
-      local text=${(l.2..0.)$((d % 60))}
-      if (( d >= 60 )); then
-        text=${(l.2..0.)$((d / 60 % 60))}:$text
-        if (( d >= 36000 )); then
-          text=$((d / 3600)):$text
-        elif (( d >= 3600 )); then
-          text=0$((d / 3600)):$text
-        fi
-      fi
-    else
-      local text="$((d % 60))s"
-      if (( d >= 60 )); then
-        text="$((d / 60 % 60))m $text"
-        if (( d >= 3600 )); then
-          text="$((d / 3600 % 24))h $text"
-          if (( d >= 86400 )); then
-            text="$((d / 86400))d $text"
+
+    case $COMMAND_EXECUTION_TIMER_FORMAT in
+      "H:M:S")
+        text=${(l.2..0.)$((d % 60))}
+        if (( d >= 60 )); then
+          text=${(l.2..0.)$((d / 60 % 60))}:$text
+          if (( d >= 36000 )); then
+            text=$((d / 3600)):$text
+          elif (( d >= 3600 )); then
+            text=0$((d / 3600)):$text
           fi
         fi
-      fi
-    fi
+        ;;
+      'd h m s')
+        text="$((d % 60))s"
+        if (( d >= 60 )); then
+          text="$((d / 60 % 60))m $text"
+          if (( d >= 3600 )); then
+            text="$((d / 3600 % 24))h $text"
+            if (( d >= 86400 )); then
+              text="$((d / 86400))d $text"
+            fi
+          fi
+        fi
+        ;;
+      *)
+        'builtin' 'print' "command-execution-timer: Invalid \`COMMAND_EXECUTION_TIMER_FORMAT\`: $COMMAND_EXECUTION_TIMER_FORMAT" >&2
+        return 1
+        ;;
+    esac
   fi
 
   'echo' $text
