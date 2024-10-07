@@ -25,9 +25,9 @@ See Docs > Installation > Legacy versions.
 * **COMMAND_EXECUTION_TIMER_PREFIX:** no default ([044474b](https://github.com/olets/command-execution-timer/commit/044474b7778a4fb2c571ccc2d2dcae8ddbea6da0))
 * **formatter:** support passing in a value ([a2a0a49](https://github.com/olets/command-execution-timer/commit/a2a0a4940a2cedd60dee87dbc86ef84fad9c3e47))
 * **formatting, hook:** prefix+foreground in hook, not formatted str ([0191220](https://github.com/olets/command-execution-timer/commit/01912207ba9a8134b994aee20aeff616c72a0861))
-* **homebrew:** bump formulae on release, with github actions ([2e37d10](https://github.com/olets/command-execution-timer/commit/2e37d10c0724998f368b40af204e02d608612ef3))
+* **homebrew:** bump formulae on release, with github actions ([27b8416](https://github.com/olets/command-execution-timer/commit/27b8416ec987ecb498b4f5bb560b75a6197cb299))
 * **threshold:** only applies to hook ([ba2550b](https://github.com/olets/command-execution-timer/commit/ba2550bdb7968245d3f92055f2fdec5a0ff1b152))
-* **version:** add variable ([48b1a91](https://github.com/olets/command-execution-timer/commit/48b1a91c2d7afe531d9b56981874068b2fe62e06))
+* **version:** add variable ([1102203](https://github.com/olets/command-execution-timer/commit/1102203054644742ef645939c3dc993132fe78c4))
 
 
 
