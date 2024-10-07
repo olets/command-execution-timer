@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  release:
+    types: [released]
+jobs:
+  homebrew:
+    name: Bump Homebrew formula
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump default formula
+        uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
+        if: "contains(github.ref, 'v2')"
+        with:
+          formula-name: command-execution-timer
+          formula-path: command-execution-timer.rb
+          homebrew-tap: olets/homebrew-tap
+          commit-message: |
+            feat({{formulaName}}): publish {{version}}
+
+            Created by https://github.com/mislav/bump-homebrew-formula-action
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
+
+      - name: Bump v2.x formula
+        uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
+        if: "contains(github.ref, 'v2')"
+        with:
+          formula-name: command-execution-timer@2
+          formula-path: command-execution-timer@2.rb
+          homebrew-tap: olets/homebrew-tap
+          commit-message: |
+            feat({{formulaName}}): publish {{version}}
+
+            Created by https://github.com/mislav/bump-homebrew-formula-action
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
+
+      - name: Bump v1.x formula
+        uses: mislav/bump-homebrew-formula-action@b3327118b2153c82da63fd9cbf58942146ee99f0 # v3.1
+        if: "contains(github.ref, 'v1')"
+        with:
+          formula-name: command-execution-timer@1
+          formula-path: command-execution-timer@1.rb
+          homebrew-tap: olets/homebrew-tap
+          commit-message: |
+            feat({{formulaName}}): publish {{version}}
+
+            Created by https://github.com/mislav/bump-homebrew-formula-action
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
