@@ -24,27 +24,52 @@ and follow the logged installation instructions.
 
 Clone this repo, and then `source` the `command-execution-timer.zsh` file in your `.zshrc`.
 
-## Legacy versions
+## Pinning a specific major version
 
-- Plugin manager: use your manager to install Command Execution Timer from branch `v1`.
+The standard installation installs the latest version. If a new major version is released,
+upgrading Command Execution Timer will automatically move you to it.
 
-- Homebrew:
-    If you previously installed the default Homebrew formula, uninstall it
+That may not be what you want.
+
+You can specify which major version you want to use.
+
+### Plugin manager
+
+Use your manager to install Command Execution Timer from branch `v1` to pin v1.x, or branch `v2` to pin v2.x. Method varies by plugin manager.
+
+### Homebrew
+
+If you previously installed the default Homebrew formula, uninstall it
+
+```shell:no-line-numbers
+brew uninstall --force command-execution-timer
+```
+
+Then,
+
+- to pin v2.x, run
 
     ```shell:no-line-numbers
-    brew uninstall --force command-execution-timer
+    brew install olets/tap/command-execution-timer@2
     ```
 
-    Install v1
+- or, to pin v1.x, run
+
     ```shell:no-line-numbers
     brew install olets/tap/command-execution-timer@1
     ```
 
-    and follow the post-install instructions logged to the terminal.
+and follow the post-install instructions logged to the terminal.
 
-- Manual:
-  - either download the latest v1.x's archive from <https://github.com/olets/command-execution-timer/releases>
-  - or clone the `v1` branch:
-      ```shell:no-line-numbers
-      git clone https://github.com/olets/command-execution-timer --single-branch --branch v1 --depth 1
-      ```
+### Manual
+
+Either download the latest v1.x or v2.x's archive from <https://github.com/olets/command-execution-timer/releases>, or clone the relevant major version branch:
+- to pin v2.x, clone the `v2` branch:
+    ```shell:no-line-numbers
+    git clone https://github.com/olets/command-execution-timer --single-branch --branch v2 --depth 1
+    ```
+    
+- to pin v1.x, clone the `v1` branch:
+    ```shell:no-line-numbers
+    git clone https://github.com/olets/command-execution-timer --single-branch --branch v1 --depth 1
+    ```
