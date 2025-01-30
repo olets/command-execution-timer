@@ -12,6 +12,8 @@
 typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
 # Round durations under 1 second to this many decimal places. Zero means round to seconds.
 typeset -gi COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
+# Run command_execution_timer__print_duration_after_command_output in a precmd hook
+typeset -gi COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT=${COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT:-0}
 # Execution time color. Default: do not colorize.
 typeset -g COMMAND_EXECUTION_TIMER_FOREGROUND=${COMMAND_EXECUTION_TIMER_FOREGROUND-}
 # Duration format. Default <days>d <hours>h <minutes>m <seconds>s.
@@ -90,6 +92,10 @@ _command_execution_timer__precmd() {
     unset COMMAND_EXECUTION_DURATION
   fi
   _command_execution_timer__start=0
+
+  if (( COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT )); then
+    command_execution_timer__print_duration_after_command_output
+  fi
 }
 
 append_command_execution_duration() {
