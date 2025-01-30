@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/olets/command-execution-timer/compare/v2.0.0...v2.1.0) (2025-01-30)
+
+
+### Features
+
+* **COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT:** add option ([956d23b](https://github.com/olets/command-execution-timer/commit/956d23be9a4faadbc696f41d138ebcb32b0911b2))
+
+
+
 # [v2.0.0](https://github.com/olets/command-execution-timer/compare/v1.0.1...v2.0.0) (2024-10-07)
 
 ## Migrating
