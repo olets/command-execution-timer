@@ -37,7 +37,7 @@ done
 
 The hook's duration message is independent of and should not conflict with a customized prompt.
 
-If you need more control, leave `COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT` set to zero (`0`, the default) and call the function `command_execution_timer__print_duration_after_command_output` in with `precmd` hook.
+If you need more control, leave `COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT` set to zero (`0`, the default) and call the function `command_execution_timer__print_duration_after_command_output` in a `precmd` hook.
 
 To enable the hook, add the following to your `.zshrc`:
 
