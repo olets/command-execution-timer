@@ -10,7 +10,7 @@
 
 # Show duration of the last command if takes at least this many seconds.
 typeset -g COMMAND_EXECUTION_TIMER_THRESHOLD=${COMMAND_EXECUTION_TIMER_THRESHOLD:-3}
-# Round durations under 1 second to this many decimal places. Zero means round to seconds.
+# Round durations under 1 second to this many decimal places. Zero means round to seconds. Highest meaningful value is 10
 typeset -gi COMMAND_EXECUTION_TIMER_PRECISION=${COMMAND_EXECUTION_TIMER_PRECISION:-0}
 # Run command_execution_timer__print_duration_after_command_output in a precmd hook
 typeset -gi COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT=${COMMAND_EXECUTION_TIMER_PRINT_DURATION_AFTER_COMMAND_OUTPUT:-0}
