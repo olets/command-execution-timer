@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/olets/command-execution-timer/compare/v2.1.1...v2.1.2) (2025-02-13)
+
+
+### Features
+
+* **tests:** add suite ([35cde41](https://github.com/olets/command-execution-timer/commit/35cde410dcfaeeea5be185a0a4c43e60b1fc92b5))
+
+
+
 ## [2.1.1](https://github.com/olets/command-execution-timer/compare/v2.1.0...v2.1.1) (2025-02-13)
 
 
