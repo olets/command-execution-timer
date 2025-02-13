@@ -10,7 +10,6 @@ A zsh plugin for timing, working with, and displaying the time an interactive sh
 
 &nbsp;
 
-
 ## Changelog
 
 See the [CHANGELOG](CHANGELOG.md) file.
@@ -24,6 +23,8 @@ Thanks for your interest. All contributions will be considered.
 Check the [Issues](https://github.com/olets/command-execution-timer/issues) to see if your topic has been discussed before or if it is being worked on. Discussing in an Issue before opening a Pull Request means future contributors only have to search in one place.
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+The test suite uses [zsh-test-runner](https://github.com/olets/zsh-test-runner) v2.x. See [tests/README.md](tests/README.md) for instructions on running the test suite.
 
 ## License
 
