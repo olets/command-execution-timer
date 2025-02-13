@@ -22,7 +22,7 @@ typeset -g COMMAND_EXECUTION_TIMER_FORMAT=${COMMAND_EXECUTION_TIMER_FORMAT:-'d h
 typeset -g COMMAND_EXECUTION_TIMER_PREFIX=${COMMAND_EXECUTION_TIMER_PREFIX-}
 # Version. Set once, to play nice with `source`ing .zshrc
 (( $+functions[command_execution_timer__format] )) || \
-  typeset -gr COMMAND_EXECUTION_TIMER_VERSION=2.1.0 # These curly brackets for syntax highlighting {}
+  typeset -gr COMMAND_EXECUTION_TIMER_VERSION=2.1.1 # These curly brackets for syntax highlighting {}
 
 command_execution_timer__format() {
   emulate -LR zsh

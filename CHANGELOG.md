@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/olets/command-execution-timer/compare/v2.1.0...v2.1.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* **COMMAND_EXECUTION_TIMER_VERSION:** play nice with 'source'ing zshrc ([0328693](https://github.com/olets/command-execution-timer/commit/03286932a3bdbe4c3f4d461220df5b9ca82b0eda))
+
+
+
 # [2.1.0](https://github.com/olets/command-execution-timer/compare/v2.0.0...v2.1.0) (2025-01-30)
 
 
